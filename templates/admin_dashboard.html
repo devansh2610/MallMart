@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f7f1e3; /* Creamy background */
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h1 {
+            font-size: 32px;
+            color: #6e2c00; /* Dark brown */
+            margin-bottom: 20px;
+        }
+        h2 {
+            font-size: 24px;
+            color: #6e2c00; /* Dark brown */
+            margin-bottom: 40px;
+        }
+        .btn {
+            padding: 12px 24px;
+            background-color: #6e2c00; /* Dark brown button */
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: inline-block;
+            margin: 10px;
+            text-align: center;
+            text-decoration: none;
+            width: 200px;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        .btn:hover {
+            background-color: #4a1a00; /* Darker brown on hover */
+        }
+        .logout-btn {
+            background-color: #dc3545; /* Red logout button */
+        }
+        .logout-btn:hover {
+            background-color: #c82333; /* Darker red on hover */
+        }
+        form {
+            margin-top: 30px;
+        }
+        .footer {
+            margin-top: 40px;
+            font-size: 14px;
+            color: #777; /* Gray text */
+        }
+    </style>
+    <script>
+        function confirmSignOut(event) {
+            if (!confirm("Are you sure you want to sign out?")) {
+                event.preventDefault();
+            } else {
+                window.location.href = "/"; // Redirect to sign out page
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome, Admin!</h1>
+        <h2>Admin Dashboard</h2>
+        <a href="/admin/analyze_customers/" class="btn">Analyze Customers</a>
+        <a href="/admin/analyze_inventory/" class="btn">Analyze Inventory</a>
+        <form action="/logout" method="post" onsubmit="confirmSignOut(event)">
+            <button type="submit" class="btn logout-btn">Logout</button>
+        </form>
+
+        <div class="footer">
+            <p>Need assistance? Contact support at <a href="mailto:support@company.com">support@company.com</a>.</p>
+        </div>
+    </div>
+</body>
+</html>

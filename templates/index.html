@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        /* General body styling */
+        body {
+            margin: 0;
+            font-family: 'Georgia', serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative; /* Ensures layering of background and content */
+            overflow: hidden;
+            color: #333; /* Default text color */
+        }
+
+        /* Background image styling */
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Send background behind content */
+            background: url('{{ url_for("static", filename="loginBack.jpeg") }}') no-repeat center center/cover;
+            filter: blur(3px); /* Slight blur effect */
+            opacity: 0.8; /* Make the image a bit faded */
+        }
+
+        /* Container for the login form */
+        .container {
+            background-color: #fff; /* White container */
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+            margin: 20px;
+            z-index: 1; /* Ensure it stays above the background */
+        }
+
+        /* Heading styling */
+        h1 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #6e2c00; /* Dark brown heading */
+        }
+
+        /* Form label styling */
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #6e2c00; /* Dark brown text */
+            text-align: left;
+        }
+
+        /* Dropdown styling */
+        select {
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            box-sizing: border-box;
+            background-color: #f9f3e9; /* Light creamy background */
+            color: #333;
+            width: 100%;
+        }
+
+        /* Submit button styling */
+        input[type="submit"] {
+            background-color: #6e2c00; /* Dark brown button */
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #4a1a00; /* Darker brown on hover */
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Image -->
+    <div class="background"></div>
+
+    <!-- Login Form -->
+    <div class="container">
+        <h1>Login</h1>
+        <form method="post">
+            <label for="login_type">Login as:</label>
+            <select id="login_type" name="login_type">
+                <option value="admin">Admin</option>
+                <option value="customer">Customer</option>
+            </select>
+            <input type="submit" value="Login">
+        </form>
+    </div>
+</body>
+</html>
+

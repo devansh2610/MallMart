@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row">
+        <div class="col-12 text-center mb-4">
+            <h1 class="display-4 font-weight-bold" style="color: #6e2c00;">Available Coupons</h1>
+            <p class="lead">Check the status of your coupons below</p>
+        </div>
+    </div>
+
+    <!-- Coupon Table -->
+    <div class="row">
+        <div class="col-12">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover text-center">
+                    <thead class="thead-light">
+                        <tr style="color: #6e2c00;">
+                            <th scope="col">Coupon Name</th>
+                            <th scope="col">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for coupon in coupon_data %}
+                        <tr>
+                            <td class="font-weight-bold" style="color: #6e2c00;">{{ coupon[0] }}</td>
+                            <td>
+                                {% if coupon[1] == 'Active' %}
+                                    <span class="badge" style="background-color: #000; color: white; padding: 8px 12px;">Active</span>
+                                {% elif coupon[1] == 'Expired' %}
+                                    <span class="badge" style="background-color: #000; color: white; padding: 8px 12px;">Expired</span>
+                                {% else %}
+                                    <span class="badge badge-secondary px-3 py-2">{{ coupon[1] }}</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

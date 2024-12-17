@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container my-5">
+  <div class="row">
+    <div class="col-12 text-center">
+      <h1 class="display-4 font-weight-bold mb-4" style="color: #6e2c00;">Welcome to MallMart!</h1>
+      <h2 class="mb-5">Your one-stop destination for everything :)</h2>
+    </div>
+  </div>
+
+  <!-- Add some space between the text and the products -->
+  <div class="my-5"></div>
+
+  <!-- Alert Messages -->
+  <div id="alertMessages" class="my-3">
+    <!-- Messages will be dynamically added here -->
+  </div>
+
+  <!-- Product Cards -->
+  <div class="row">
+    {% for product in product_data %}
+      <div class="col-md-4 mb-4">
+        <div class="card h-100">
+          <!-- Product Image -->
+          {% set image_path = 'images/' + product[0]|string + '.jpg' %}
+          <img src="{{ url_for('static', filename=image_path) }}" class="card-img-top" alt="{{ product[1] }} Image">
+
+          <!-- Card Content -->
+          <div class="card-body text-center">
+            <h5 class="card-title" style="color: #6e2c00;">{{ product[1] }}</h5> <!-- Product Name -->
+            <p class="product_id" style="color: #6e2c00;">Product ID: {{ product[0] }}</p>
+            <p class="card-text" style="color: #6e2c00;">Price: ${{ product[2] }}</p>
+
+            <!-- Add to Cart Form -->
+            <form method="POST" action="{{ url_for('add_to_cart', product_id=product[0]) }}">
+              <label for="quantity_{{ product[0] }}" style="color: #6e2c00;">Quantity:</label>
+              <input type="number" id="quantity_{{ product[0] }}" name="quantity" value="1" min="1" required>
+              <button type="submit" class="btn btn-primary mt-3" style="background-color: #6e2c00; border-color: #6e2c00;">Add to Cart</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<!-- JavaScript for Alert Messages -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var addToCartButtons = document.querySelectorAll("form");
+    addToCartButtons.forEach(function (form) {
+      form.addEventListener("submit", function (event) {
+        event.preventDefault(); // Prevent normal form submission
+        var formData = new FormData(form);
+        var productId = form.action.split('/').pop();
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", form.action, true);
+        xhr.onload = function () {
+          if (xhr.status === 200) {
+            showMessage('success', 'Product added to cart successfully!');
+          } else {
+            showMessage('danger', 'Error: Product could not be added to cart!');
+          }
+        };
+        xhr.send(formData);
+      });
+    });
+
+    function showMessage(type, message) {
+      var alertMessages = document.getElementById('alertMessages');
+      var alertDiv = document.createElement('div');
+      alertDiv.classList.add('alert', 'alert-' + type);
+      alertDiv.textContent = message;
+      alertMessages.appendChild(alertDiv);
+      setTimeout(function() {
+        alertDiv.remove();
+      }, 3000);
+    }
+  });
+</script>
+{% endblock %}
