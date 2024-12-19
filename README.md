@@ -30,7 +30,7 @@ MallMart is an on paper idea of an E-commerce platform developed using MySQL, Fl
 |---------------------------------|---------------------------------|
 | *Product details given*         | *Adding products to cart*       |
 
-| ![Image 7](projectImages/7.png) | ![Image 9](projectImages/8.png) |
+| ![Image 7](projectImages/7.png) | ![Image 9](projectImages/9.jpeg) |
 |---------------------------------|---------------------------------|
 | *View items in your cart*       | *About page*                    |
 
